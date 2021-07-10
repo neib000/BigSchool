@@ -101,8 +101,14 @@ D:\Project\thuchanhweb\BigSchool\BigSchool\bin\Microsoft.Owin.Security.Twitter.x
 D:\Project\thuchanhweb\BigSchool\BigSchool\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\Project\thuchanhweb\BigSchool\BigSchool\bin\Microsoft.Owin.Security.OAuth.xml
 D:\Project\thuchanhweb\BigSchool\BigSchool\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\Project\thuchanhweb\BigSchool\BigSchool\obj\Debug\BigSchool.csproj.AssemblyReference.cache
 D:\Project\thuchanhweb\BigSchool\BigSchool\obj\Debug\BigSchool.csproj.CoreCompileInputs.cache
 D:\Project\thuchanhweb\BigSchool\BigSchool\obj\Debug\BigSchool.csproj.CopyComplete
 D:\Project\thuchanhweb\BigSchool\BigSchool\obj\Debug\BigSchool.dll
 D:\Project\thuchanhweb\BigSchool\BigSchool\obj\Debug\BigSchool.pdb
+D:\Project\thuchanhweb\BigSchool\BigSchool\obj\Debug\BigSchool.csproj.AssemblyReference.cache
+D:\Project\thuchanhweb\BigSchool\BigSchool\bin\System.Net.Http.Formatting.dll
+D:\Project\thuchanhweb\BigSchool\BigSchool\bin\System.Web.Http.dll
+D:\Project\thuchanhweb\BigSchool\BigSchool\bin\System.Web.Http.WebHost.dll
+D:\Project\thuchanhweb\BigSchool\BigSchool\bin\System.Net.Http.Formatting.xml
+D:\Project\thuchanhweb\BigSchool\BigSchool\bin\System.Web.Http.xml
+D:\Project\thuchanhweb\BigSchool\BigSchool\bin\System.Web.Http.WebHost.xml
