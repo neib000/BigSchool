@@ -76,12 +76,16 @@ namespace BigSchool.Controllers
             }
             return View(courses);
         }
+        [Authorize]
         public ActionResult Delete(int id)
         {
+            ApplicationUser currentUser = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
             BigSchoolContext db = new BigSchoolContext();
             Course course = db.Courses.Find(id);
+            Attendance attendance = db.Attendances.SingleOrDefault(x => x.CourseId == course.Id && x.Attendee == currentUser.Id);
             if (course != null)
             {
+                db.Attendances.Remove(attendance);
                 db.Courses.Remove(course);
                 db.SaveChanges();
                 return RedirectToAction("Index", "Home");
