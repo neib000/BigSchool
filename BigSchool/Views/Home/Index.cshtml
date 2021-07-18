@@ -19,10 +19,33 @@
                 <div class="details">
                     <span class="lecture">
                         @course.Name
-                    </span> <span class="category">
+                        @if (course.isLogin == true)
+                        {
+                        
+                            if (course.isShowFollow)
+                            {
+                                <button data-user-id="@course.LecturerId" class="btn btn-default btn-sm js-tongle-follow">Follow</button>
+                            }
+                            else
+                            {
+                                <button data-user-id="@course.LecturerId" class="btn btn-success btn-sm js-tongle-follow">Following</button>
+                            }
+                        }
+                    </span>
+                    <span class="category">
                         @course.Category.Name
                     </span>
-                    <button data-course-id="@course.Id" class="btn btn-default btn-sm js-tongle-attendance">Going?</button>
+                    @if (course.isLogin == true)
+                    {
+                        if (course.isShowGoing)
+                        {
+                            <button data-course-id="@course.Id" class="btn btn-default btn-sm js-tongle-attendance">Going?</button>
+                        }
+                        else
+                        {
+                            <button data-course-id="@course.Id" class="btn btn-info btn-sm js-tongle-attendance">Going</button>
+                        }
+                    }
                 </div>
             </li>
         }
@@ -32,9 +55,48 @@
             $(document).ready(function () {
                 $(".js-tongle-attendance").click((e) => {
                     var button = $(e.target);
-                    $.post("/api/attendances", { Id: button.attr("data-course-id") }).done( () =>{
-                        alert("Regitster course sucessfully")
-                        button.removeClass("btn-default").addClass("btn-info").text("Going")
+                    $.post("/api/attendances", { Id: button.attr("data-course-id") }).done((result) => {
+                        if (result == "cancel") {
+                            alert("Cancel register course sucessfully!")
+                            button.removeClass("btn-info").addClass("btn-default").text("Going?")
+                        } else {
+                            alert("Regitster course sucessfully")
+                            button.removeClass("btn-default").addClass("btn-info").text("Going")
+                        }
+                    }).fail(() => {
+                        alert("Something fail")
+                    })
+                });
+                $(".js-tongle-follow").click((e) => {
+                    var button = $(e.target);
+                    var followee = button.attr("data-user-id");
+                    $.post("/api/followings", { FolloweeId: button.attr("data-user-id") }).done(function (result) {
+                        if (result == "cannot") {
+                            $(".js-tongle-follow").each((i, obj) => {
+                                if ($(this).attr("data-user-id") == followee) {
+                                    $(this).removeClass("btn-success").addClass("btn-default").text("Follow")
+                                }
+                            })
+                            alert("Can Not Follow!")
+
+                        }
+                        if (result == "cancel") {
+                            $(".js-tongle-follow").each((i, obj)=>{
+                                if ($(this).attr("data-user-id") == followee) {
+                                    $(this).removeClass("btn-success").addClass("btn-default").text("Follow")
+                                }
+                            })
+                            alert("unFollow sucessfully!")
+                      
+                        } else {
+                            $(".js-tongle-follow").each((i, obj)=>{
+                                if ($(this).attr("data-user-id") == followee) {
+                                    $(this).removeClass("btn-defaul").addClass("btn-success").text("Following")
+                                }
+                            })            
+                            alert("Follow sucessfully")
+
+                        }
                     }).fail(() => {
                         alert("Something fail")
                     })
